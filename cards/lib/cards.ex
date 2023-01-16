@@ -33,6 +33,14 @@ defmodule Cards do
   end
 
   # adds question to tell developers this returns bool
+  @doc """
+    Determines whether a deck contains a given card
+
+    ## Examples
+      iex> deck = Cards.create()
+      iex> Cards.contains?(deck,"Spades of Ace")
+      true
+  """
   def contains?(deck, card) do
     Enum.member?(deck, card)
   end
