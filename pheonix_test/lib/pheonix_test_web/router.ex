@@ -6,7 +6,7 @@ defmodule PheonixTestWeb.Router do
     plug(:fetch_session)
     plug(:fetch_live_flash)
     plug(:put_root_layout, {PheonixTestWeb.LayoutView, :root})
-    plug(:protect_from_forgery)
+    # plug(:protect_from_forgery)
     plug(:put_secure_browser_headers)
   end
 
@@ -18,6 +18,14 @@ defmodule PheonixTestWeb.Router do
     pipe_through(:browser)
 
     get("/", PageController, :index)
+  end
+
+  scope "/api", PheonixTestWeb do
+    pipe_through(:browser)
+
+    get("/roll", RollController, :index)
+    get("/roll/:num_dice", RollController, :show)
+    resources("/quotations", QuotationController, except: [:new, :edit])
   end
 
   # Other scopes may use custom stacks.
